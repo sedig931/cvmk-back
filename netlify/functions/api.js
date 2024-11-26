@@ -14,7 +14,7 @@ require('./database/connect.js');
 require('./strategies/local.js');
 
 api.use(cors({
-    origin: 'https://samdtc931.com',
+    origin: 'https://serve.samdtc931.com',
     methods: ['POST', 'GET', 'DELETE'],
     credentials: true,
 }));
