@@ -19,7 +19,7 @@ api.use(cors({
     credentials: true,
 }));
 
-api.use('/uploads', express.static("./uploads"));
+api.use('/uploads', express.static("../uploads"));
 
 api.use(express.json());
 api.use(express.urlencoded());
