@@ -10,14 +10,14 @@ const setPhoto = require("./routes/setPhoto.js");
 branchRouter.use("/customer", customer);
 branchRouter.use("/payment", payments);
 
-// branchRouter.use((req, res, next) => {
-//     if (req.user) {
-//         next();
-//     } else {
-//         console.log(req.isAuthenticated(), "unAuthorized");
-//         res.send(401);
-//     }
-// });
+branchRouter.use((req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.send(401);
+        // console.log(req.isAuthenticated(), "unAuthorized");
+    }
+});
 
 branchRouter.use("/setPhoto", setPhoto);
 branchRouter.use("/getCustomer", getCustomer);

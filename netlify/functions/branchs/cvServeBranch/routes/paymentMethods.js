@@ -4,16 +4,24 @@ const axios = require("axios");
 
 const payments = require('../schemas/paymentsTable.js');
 
-const clientID =
-  "AdcTxjZoiYo0W1njgg0NJEzeGlH03cUh6yhIHDnm0JstgYqoKv0CPs_haqndZfJnAtDsX3wsifspNvfO";
-const clinetSec =
-  "ELFxTIiDcq6JTcJzb7CQ2wOpjXB2T68trGOCSMXCXkcSFVi2jV29w_Rt-cHKHvQQ6z3GwnYMkScwO_kr";
+// sand-boox
+// const clientID =
+//   "AdcTxjZoiYo0W1njgg0NJEzeGlH03cUh6yhIHDnm0JstgYqoKv0CPs_haqndZfJnAtDsX3wsifspNvfO";
+// const clinetSec =
+//   "ELFxTIiDcq6JTcJzb7CQ2wOpjXB2T68trGOCSMXCXkcSFVi2jV29w_Rt-cHKHvQQ6z3GwnYMkScwO_kr";
+// const baseURL = "https://api-m.sandbox.paypal.com";
 
-const baseURL = "https://api-m.sandbox.paypal.com";
+//live
+const clientID =
+  "AcjVn3WJfPCPyZQ5E9dS-QLuJA9s070SBaiS-kYu_zXaWhta_zMKpXDPikNOSbuZ4Acy9GKGm0Qnss9O";
+const clinetSec =
+  "EPL-4M36oqsPaAljXnPas85XXc3dqsGlcLmBXZTDpp_fw_kVlrAhq7eiRj2DRGlm1fxpVV5De22unnJY";
+
+const baseURL = "https://api-m.paypal.com";
 
 async function generateAccessToken() {
   const response = await axios({
-    url: "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+    url: `${baseURL}/v1/oauth2/token`,
     method: "post",
     data: "grant_type=client_credentials",
     auth: {
@@ -29,7 +37,7 @@ route.post("/paypal", async (req, res) => {
     // console.log("here...");
 
     const response = await axios({
-      url: "https://api-m.sandbox.paypal.com/v2/checkout/orders",
+      url: `${baseURL}/v2/checkout/orders`,
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -44,27 +52,27 @@ route.post("/paypal", async (req, res) => {
                 name: "cv as pdf file",
                 description: "make perfect cv desgine",
                 quantity: "1",
-                unit_amount: { currency_code: "USD", value: "50" },
+                unit_amount: { currency_code: "USD", value: "3.75" },
               },
             ],
             amount: {
               currency_code: "USD",
-              value: "50",
+              value: "3.75",
               breakdown: {
                 item_total: {
                   currency_code: "USD",
-                  value: "50",
+                  value: "3.75",
                 },
               },
             },
           },
         ],
         application_context: {
-          return_url: `http://samdtc.netlify.app/capPporder`,
-          cancel_url: "http://samdtc.netlify.app/",
+          return_url: `https://samdtc931.com/capPporder`,
+          cancel_url: "https://samdtc931.com/",
           shipping_preference: "NO_SHIPPING",
           user_action: "PAY_NOW",
-          brand_name: "samdc",
+          brand_name: "samdtc",
         },
       }),
     });
@@ -85,7 +93,7 @@ route.post("/paypalCapture", async (req, res) => {
     const { token } = req.body;
 
     const response = await axios({
-      url: `https://api-m.sandbox.paypal.com/v2/checkout/orders/${token}/capture`,
+      url: `${baseURL}/v2/checkout/orders/${token}/capture`,
       method: "post",
       headers: {
         "Content-Type": "application/json",

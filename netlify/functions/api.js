@@ -42,13 +42,5 @@ api.get('/api/destroy', (req, res) => {
 });
 
 api.use("/api", cvmkRoute);
-api.use((req, res, next) => {
-    if (req.user) {
-        console.log(req.isAuthenticated(), 'Authorized');
-        next();
-    } else {
-        console.log(req.isAuthenticated(), 'unAuthorized');
-        res.send();
-    }
-});
+
 export const handler = serverless(api);
