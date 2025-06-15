@@ -40,7 +40,8 @@ route.post("/addFrame", async (req, res) => {
     let { frames } = await customer.findById({ _id: req.user._id });
     if (frames.findIndex((frame) => frame.frameName === framName) === -1) {
       frames.push({ frameName: framName, frameInfo: frameInfo });
-      await customer.updateOne({ _id: req.user._id }, { frames: frames });
+      let { freelimit } = await customer.findById({ _id: req.user._id });
+      await customer.updateOne({ _id: req.user._id }, { frames: frames, freelimit: ++freelimit });
     } else {
       frames[frames.findIndex((frame) => frame.frameName === framName)] = {
         frameName: framName,

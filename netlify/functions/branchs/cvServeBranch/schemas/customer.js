@@ -24,6 +24,10 @@ const customerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Array,
     default: [],
   },
+  freelimit: {
+    type: mongoose.Schema.Types.String,
+    default: '0'
+  },
 });
 
 module.exports = mongoose.model("customer", customerSchema);
