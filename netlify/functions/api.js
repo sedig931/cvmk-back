@@ -42,5 +42,4 @@ api.get('/api/destroy', (req, res) => {
 });
 
 api.use("/api", cvmkRoute);
-
 export const handler = serverless(api);
