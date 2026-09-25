@@ -15,7 +15,7 @@ require("./strategies/local.js");
 
 api.use(
   cors({
-    origin: ["https://samdtc931.com/", "www.samdtc931.com/"],
+    origin: "https://samdtc931.com/",
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   }),
@@ -32,11 +32,12 @@ api.use(
     resave: false,
     saveUninitialized: false,
     store: new mongodbsession({
-      uri: "mongodb+srv://sedig931:mongodbsiddigA5735354@salesclustor.0bmk5.mongodb.net/market_project?retryWrites=true&w=majority&appName=SalesClustor",
+      uri: "mongodb+srv://sedig931_db_user:hVChDuC9zi0OnGyo@cvmkclustor.p5k1hma.mongodb.net/cvMakerProject?appName=cvMKClustor",
       collection: "mySessions",
     }),
   }),
 );
+
 api.use(passport.initialize());
 api.use(passport.session());
 api.get("/api/destroy", (req, res) => {
