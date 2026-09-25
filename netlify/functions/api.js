@@ -31,10 +31,10 @@ api.use(
     secret: "AGHDGAHDA",
     resave: false,
     saveUninitialized: false,
-    store: new mongodbsession({
-      uri: "mongodb+srv://sedig931_db_user:hVChDuC9zi0OnGyo@cvmkclustor.p5k1hma.mongodb.net/cvMakerProject?appName=cvMKClustor",
-      collection: "mySessions",
-    }),
+    // store: new mongodbsession({
+    //   uri: "mongodb+srv://sedig931_db_user:hVChDuC9zi0OnGyo@cvmkclustor.p5k1hma.mongodb.net/cvMakerProject?appName=cvMKClustor",
+    //   collection: "mySessions",
+    // }),
   }),
 );
 
